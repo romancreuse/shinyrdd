@@ -302,7 +302,7 @@ A typical workflow with `shinyrdd` can be summarised as:
              ┌────────▼─────────┐
              │ Visualise        │
              │ distributions /  │
-             │ trajectories      │
+             │ trajectories     │
              └────────┬─────────┘
                       │
              ┌────────▼─────────┐
