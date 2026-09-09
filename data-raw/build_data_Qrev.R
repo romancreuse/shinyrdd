@@ -6,17 +6,17 @@ n <- 400
 
 quanti_demo <- data.frame(
   ID = sprintf("PAT%03d", 1:n),
-  
+
   Age = rnorm(n, 55, 12),
   Height = round(rnorm(n, 170, 10), 1),
   Weight = rnorm(n, 75, 15),
-  
+
   Gender = sample(
     c(1, 2),
     n,
     replace = TRUE
   ),
-  
+
   Treatment = sample(
     c("A", "B", "C"),
     n,
@@ -107,9 +107,9 @@ for(v in c(
   "Age",
   "Weight"
 )){
-  
+
   quanti_demo[sample(n, 20), v] <- NA
-  
+
 }
 
 
@@ -132,8 +132,7 @@ labelled::var_label(quanti_demo) <- list(
   Gender = "Gender"
 )
 
-# usethis::use_data(
-#   quanti_demo,
-#   overwrite = TRUE
-# )
-
+usethis::use_data(
+  quanti_demo,
+  overwrite = TRUE
+)

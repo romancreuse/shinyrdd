@@ -7,29 +7,29 @@ n_time <- 10
 
 
 patients <- data.frame(
-  
+
   ID = sprintf("PAT%03d",1:n_id),
-  
+
   Gender = sample(
     c("1","2"),
     n_id,
     replace = TRUE
   ),
-  
+
   Center = sample(
     c("1","2","3"),
     n_id,
     replace = TRUE
   ),
-  
+
   Treatment = sample(
     c("A","B"),
     n_id,
     replace = TRUE
   ),
-  
+
   Age = round(rnorm(n_id,60,10))
-  
+
 )
 
 
@@ -60,7 +60,7 @@ pente <- rnorm(
 )
 
 
-longi_demo$Score <- 
+longi_demo$Score <-
   50 +
   intercept[match(longi_demo$ID,
                   patients$ID)] +
@@ -151,7 +151,7 @@ longi_demo$Time <- ifelse(longi_demo$Time==0,0,longi_demo$Time*30 + sample(c(-7:
 # Labels
 
 labelled::var_label(longi_demo) <- list(
-  
+
   ID = "Patient ID",
   Time = "Time since inclusion (days)",
   Score = "Clinical score",
@@ -160,7 +160,7 @@ labelled::var_label(longi_demo) <- list(
 )
 
 
-# usethis::use_data(
-#   longi_demo,
-#   overwrite = TRUE
-# )
+usethis::use_data(
+  longi_demo,
+  overwrite = TRUE
+)

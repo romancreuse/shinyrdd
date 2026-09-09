@@ -3,16 +3,16 @@
 ui_Qrev <- function(df,quali_vars,quanti_vars){
 
   shiny::fluidPage(
-  shiny::titlePanel("Revue de données quantitatives"),
+  shiny::titlePanel("Revue de donn\u00e9es quantitatives"),
   # inputs ----
   shiny::sidebarLayout(
     shiny::sidebarPanel(width = 2,
-                 # Variable quanti à investiguer
+                 # Variable quanti a investiguer
                  shiny::conditionalPanel(
-                   condition = "input.tabs == 'Graphs continu'|| input.tabs == 'Liste outliers'",
+                   condition = "input.tabs == 'Graphiques'|| input.tabs == 'Liste outliers'",
                    shiny::selectInput(
                      inputId = "num",
-                     label = "Variable à investiguer",
+                     label = "Variable \u00e0 investiguer",
                      choices = choices_from_labels(df, quanti_vars)
                    )
                  ),
@@ -23,19 +23,19 @@ ui_Qrev <- function(df,quali_vars,quanti_vars){
                    choices = c("Aucune",choices_from_labels(df, quali_vars)),
                    selected = "Aucune"
                  ),
-                 # Si une variable de groupage est sélectionnée, possiblité d'exclures certaines modalités de l'analyse
-                 # Ici par défaut vide, mis à jour dans le server quand un groupe est selectionné
+                 # Si une variable de groupage est selectionnee, possiblite d'exclure certaines modalites de l'analyse
+                 # Ici par defaut vide, mis a jour dans le server quand un groupe est selectionne
                  shiny::conditionalPanel(
                    condition = "input.grp != 'Aucune'",
                    shiny::checkboxGroupInput(
                      inputId = "incl",
-                     label = "Groupes à inclure",
+                     label = "Groupes \u00e0 inclure",
                      choices = NULL
                    )
                  ),
-                 shiny::actionButton("go", "Mettre à jour"),
+                 shiny::actionButton("go", "Mettre \u00e0 jour"),
                  shiny::conditionalPanel(
-                   condition = "input.tabs == 'Graphs continu'|| input.tabs == 'Liste outliers'",
+                   condition = "input.tabs == 'Graphiques'|| input.tabs == 'Liste outliers'",
                    shiny::numericInput(
                      inputId = "bmin",
                      label = "Borne min outlier",
@@ -48,41 +48,41 @@ ui_Qrev <- function(df,quali_vars,quanti_vars){
                    )
                  ),
                  shiny::conditionalPanel(
-                   condition = "input.tabs == 'Graphs continu'",
+                   condition = "input.tabs == 'Graphiques'",
                    shiny::numericInput(
                      inputId = "bins",
-                     label = "Granularité (histogramme)",
+                     label = "Granularit\u00e9 (histogramme)",
                      value = 30,
                      min = 1
                    )
                  ),
                  shiny::conditionalPanel(
                    condition = "(input.bmax != null || input.bmin != null)",
-                   actionButton("store", "Ajouter à la liste d'outliers")
+                   shiny::actionButton("store", "Ajouter \u00e0 la liste d'outliers")
                  ),
                  shiny::conditionalPanel(
                    condition = "output.has_outliers",
-                   downloadButton(
+                   shiny::downloadButton(
                      outputId = "export_outliers",
                      label = "Exporter les outliers"
                    ),
-                   helpText("Tables stockées"),
-                   uiOutput("stored_tables")
+                   shiny::helpText("Tables stock\u00e9es"),
+                   shiny::uiOutput("stored_tables")
                  ),
                  shiny::checkboxGroupInput(
                    inputId = "desc",
-                   label = "Variables à inclure dans les tableaux",
+                   label = "Variables \u00e0 inclure dans les tableaux",
                    choices = choices_from_labels(df,colnames(df)),
                    selected = choices_from_labels(df,colnames(df))
                  )
-                 
+
     ),
-  # Outputs ---- 
+  # Outputs ----
   shiny::mainPanel(width = 10,
                    shiny::tabsetPanel(id = "tabs",
                                       shiny::tabPanel(
-                            title = "Graphs continu",
-                            
+                            title = "Graphiques",
+
                             htmltools::div(
                               style = "margin-bottom: 30px;",
                               gt::gt_output("desc_num")
@@ -91,7 +91,7 @@ ui_Qrev <- function(df,quali_vars,quanti_vars){
                               style = "margin-bottom: 30px;",
                               shiny::plotOutput("hist")
                             ),
-                            
+
                             htmltools::div(
                               style = "margin-bottom: 30px;",
                               shiny::plotOutput("ridges")
@@ -104,10 +104,10 @@ ui_Qrev <- function(df,quali_vars,quanti_vars){
                           ),
                           shiny::tabPanel(
                             title = "Tableau descriptif",
-                            htmltools::span(textOutput("date_removed"), style="color:red"),
+                            htmltools::span(shiny::textOutput("date_removed"), style="color:red"),
                             gt::gt_output("desc")
                           )
-                          
+
               )
     )
   )
