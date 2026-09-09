@@ -360,7 +360,7 @@ The package provides two synthetic datasets for demonstration purposes.
 A quantitative dataset containing individual-level observations and several quantitative and qualitative variables.
 
 ```r
-data(quanti_demo)
+head(quanti_demo)
 ```
 
 ### `longi_demo`
@@ -368,7 +368,7 @@ data(quanti_demo)
 A longitudinal dataset containing repeated observations for multiple individuals.
 
 ```r
-data(longi_demo)
+head(longi_demo)
 ```
 
 These datasets are intended for demonstration and testing of the package functionality.
@@ -398,9 +398,6 @@ Future versions of `shinyrdd` may include additional functionality, including:
 
 * French and English user interfaces;
 * additional graphical tools for data review;
-* enhanced review and annotation capabilities;
-* additional methods for longitudinal data exploration.
-
 ---
 
 # Author
